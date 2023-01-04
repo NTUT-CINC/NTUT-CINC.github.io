@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let data: PageData;
 </script>
 
-<h1>{data.post.title}</h1>
-<div>{@html data.post.content}</div>
+<SvelteMarkdown source={data.post.content} />
