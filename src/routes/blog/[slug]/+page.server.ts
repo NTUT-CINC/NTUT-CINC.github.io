@@ -8,5 +8,7 @@ export const load = (({ params }) => {
 
     if (!post) throw error(404);
 
-    return { content: post.content };
+    return {
+        content: post.content
+    };
 }) satisfies PageServerLoad;
