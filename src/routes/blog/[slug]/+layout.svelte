@@ -1,32 +1,32 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+    import type { PageData } from './$types';
 
-	export let data: PageData;
+    export let data: PageData;
 </script>
 
 <div class="layout">
-	<main>
-		<slot />
-	</main>
+    <main>
+        <slot />
+    </main>
 
-	<aside>
-		<h2>more posts</h2>
-		<ul>
-			{#each data.summaries as { slug, title }}
-				<li>
-					<a href="/blog/{slug}">{title}</a>
-				</li>
-			{/each}
-		</ul>
-	</aside>
+    <aside>
+        <h2>more posts</h2>
+        <ul>
+            {#each data.summaries as { slug, title }}
+                <li>
+                    <a href="/blog/{slug}">{title}</a>
+                </li>
+            {/each}
+        </ul>
+    </aside>
 </div>
 
 <style>
-	@media (min-width: 640px) {
-		.layout {
-			display: grid;
-			gap: 2em;
-			grid-template-columns: 1fr 16em;
-		}
-	}
+    @media (min-width: 640px) {
+        .layout {
+            display: grid;
+            gap: 2em;
+            grid-template-columns: 1fr 16em;
+        }
+    }
 </style>
