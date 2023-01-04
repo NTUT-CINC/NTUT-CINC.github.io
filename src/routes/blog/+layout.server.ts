@@ -1,16 +1,12 @@
+import type { LayoutServerLoad } from './$types';
+
 import { posts } from './posts';
 
-type Summary = {
-    slug: string;
-    title: string;
-    preview?: string;
-};
-
-export function load(): { summaries: Summary[] } {
+export const load = (() => {
     return {
         summaries: posts.map((post) => ({
             slug: post.slug,
             title: post.title
         }))
     };
-}
+}) satisfies LayoutServerLoad;

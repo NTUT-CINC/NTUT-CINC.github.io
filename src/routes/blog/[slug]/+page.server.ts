@@ -1,15 +1,12 @@
-import type { Post } from '../posts';
+import type { PageServerLoad } from './$types';
+
 import { error } from '@sveltejs/kit';
 import { posts } from '../posts';
 
-type Input = {
-    params: Post;
-};
-
-export function load({ params }: Input) {
+export const load = (({ params }) => {
     const post = posts.find((post) => post.slug === params.slug);
 
     if (!post) throw error(404);
 
-    return { post };
-}
+    return { content: post.content };
+}) satisfies PageServerLoad;
