@@ -4,12 +4,14 @@
     export let data: PageData;
 </script>
 
-<h1>blog</h1>
+<div class="container">
+    <h1 class="text-8xl font-bold font-mono">Blog</h1>
+</div>
 
 <ul>
     {#each data.summaries as { slug, title }}
         <li>
-            <a href="/blog/{slug}">{title}</a>
+            <a href="/blog/{slug}" class="text-blue-600 underline">{title}</a>
         </li>
     {/each}
 </ul>

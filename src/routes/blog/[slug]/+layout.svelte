@@ -4,17 +4,17 @@
     export let data: LayoutData;
 </script>
 
-<div class="layout">
-    <main>
+<div class="flex">
+    <main class="w-9/12">
         <slot />
     </main>
 
-    <aside>
-        <h2>more posts</h2>
+    <aside class="w-3/12">
+        <h2>More Posts</h2>
         <ul>
             {#each data.summaries as { slug, title }}
-                <li>
-                    <a href="/blog/{slug}">{title}</a>
+                <li class="mb-2">
+                    <a href="/blog/{slug}" class="text-blue-600 underline">{title}</a>
                 </li>
             {/each}
         </ul>
