@@ -1,10 +1,10 @@
 import type { LayoutServerLoad } from './$types';
 
-import { posts } from './posts';
+import { getPosts } from './posts';
 
 export const load = (() => {
     return {
-        summaries: posts.map((post) => {
+        summaries: getPosts().map((post) => {
             const title = post.content.slice(2, post.content.indexOf('\n'));
 
             return {
