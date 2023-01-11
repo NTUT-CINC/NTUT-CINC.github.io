@@ -1,9 +1,12 @@
 # Svelte Prototype
 
+## subtitle
+
 For help type `tldr <command>`
 
+`pacman -Syu`
+
 ```cpp
-// main.cpp
 #include <iostream>
 
 int main() {
@@ -12,7 +15,6 @@ int main() {
 ```
 
 ```c
-// main.c
 #include <stdio.h>
 
 int main() {
@@ -22,7 +24,6 @@ int main() {
 ```
 
 ```rs
-// main.rs
 #![feature(yeet_expr)]
 fn main() {
     something();
@@ -34,7 +35,6 @@ fn something() -> Option<()> {
 ```
 
 ```py
-# main.py
 x = [i * 2 - 1 for i in range(10)]
 
 def func(n: int) -> None:

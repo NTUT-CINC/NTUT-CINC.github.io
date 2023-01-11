@@ -1,40 +1,41 @@
 <script lang="ts">
     import type { PageData } from './$types';
 
-    import 'highlight.js/styles/github-dark.css';
+    import SvelteMarkDown, { type Renderers } from 'svelte-markdown';
+
+    import Heading from '$lib/md-renderers/Heading.svelte';
+    import CodeSpan from '$lib/md-renderers/CodeSpan.svelte';
+    import CodeBlock from '$lib/md-renderers/CodeBlock.svelte';
+
+    const renderers: Partial<Renderers> = {
+        heading: Heading,
+        code: CodeBlock,
+        codespan: CodeSpan
+    };
 
     export let data: PageData;
 </script>
 
-<div class="post">
-    {@html data.html}
+<div class="post p-5 w-full">
+    <SvelteMarkDown source={data.content} {renderers} />
     <!-- <SvelteMarkdown source={data.content} /> -->
 </div>
 
 <!-- Pass css rules to markdown child -->
 <style>
-    :global(.post > *) {
+    .post :global(> *) {
         @apply mb-3;
     }
-    :global(.post > h1) {
-        @apply text-red-500 text-3xl;
-    }
-    :global(.post > p > code) {
-        @apply px-1 pt-1 text-sm rounded-md bg-slate-700;
-    }
-    :global(.post > pre) {
-        @apply w-2/3 px-3 py-3 rounded-lg bg-slate-800;
-    }
-    :global(.post > table) {
+    .post :global(table) {
         @apply table-fixed w-auto p-3 rounded-sm bg-slate-800;
     }
-    :global(.post * tr) {
+    .post :global(tr) {
         @apply py-5;
     }
-    :global(.post * th) {
+    .post :global(th) {
         @apply text-center px-3;
     }
-    :global(.post * td) {
+    .post :global(td) {
         @apply text-center px-3 border-t-2 border-slate-700;
     }
 </style>

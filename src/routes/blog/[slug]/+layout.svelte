@@ -5,11 +5,13 @@
 </script>
 
 <div class="flex">
-    <main class="w-9/12">
+    <div class="w-3/12" />
+
+    <main class="w-6/12 flex flex-col items-center">
         <slot />
     </main>
 
-    <aside class="w-3/12">
+    <div class="w-3/12">
         <h2>More Posts</h2>
         <ul>
             {#each data.summaries as { slug, title }}
@@ -18,5 +20,5 @@
                 </li>
             {/each}
         </ul>
-    </aside>
+    </div>
 </div>
