@@ -13,17 +13,26 @@
         codespan: CodeSpan
     };
 
+    const dateOptions: Intl.DateTimeFormatOptions = {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric'
+    };
+
     export let data: PageData;
 </script>
 
 <div class="post p-5 w-full">
+    <div>
+        <span class="font-bold">{data.createdOn.toLocaleDateString('en-us', dateOptions)}</span>
+    </div>
     <SvelteMarkDown source={data.content} {renderers} />
     <!-- <SvelteMarkdown source={data.content} /> -->
 </div>
 
 <!-- Pass css rules to markdown child -->
 <style>
-    .post :global(> *) {
+    :global(.post > *) {
         @apply mb-3;
     }
     .post :global(table) {

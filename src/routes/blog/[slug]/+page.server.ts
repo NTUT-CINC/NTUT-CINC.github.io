@@ -9,6 +9,8 @@ export const load = (({ params }) => {
     if (!post) throw error(404);
 
     return {
-        content: post.content
+        content: post.content,
+        createdOn: post.createdOn,
+        updatedOn: post.updatedOn
     };
 }) satisfies PageServerLoad;
