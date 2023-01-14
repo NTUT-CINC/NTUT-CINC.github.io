@@ -1,6 +1,6 @@
 <script lang="ts">
     import { marked } from 'marked';
-    import hljs from 'highlight.js';
+    import hljs from 'highlight.js/lib/common'; // this should cover most languages
 
     import 'highlight.js/styles/github-dark.css';
 
