@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { PageData } from './$types';
 
-    import SvelteMarkDown, { type Renderers } from 'svelte-markdown';
+    import SvelteMarkdown, { type Renderers } from 'svelte-markdown';
 
     import Heading from '$lib/md-renderers/Heading.svelte';
     import CodeSpan from '$lib/md-renderers/CodeSpan.svelte';
@@ -13,10 +13,12 @@
         codespan: CodeSpan
     };
 
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric'
+    const toDateFormatString = (date: Date) => {
+        return date.toLocaleDateString('en-us', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric'
+        });
     };
 
     export let data: PageData;
@@ -24,14 +26,13 @@
 
 <div class="post p-5 w-full">
     <div>
-        <span class="font-bold">{data.createdOn.toLocaleDateString('en-us', dateOptions)}</span>
+        <span class="font-bold">{toDateFormatString(data.createdOn)}</span>
     </div>
-    <SvelteMarkDown source={data.content} {renderers} />
-    <!-- <SvelteMarkdown source={data.content} /> -->
+    <SvelteMarkdown source={data.content} {renderers} />
 </div>
 
 <!-- Pass css rules to markdown child -->
-<style>
+<style lang="postcss">
     :global(.post > *) {
         @apply mb-3;
     }
