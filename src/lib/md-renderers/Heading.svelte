@@ -2,18 +2,22 @@
     export let text: string;
     export let depth: number;
 
-    const genHashtag = (depth: number) => {
-        return Array(depth + 1).join('#');
-    };
+    const id = text.toLowerCase().replaceAll(' ', '-');
 </script>
 
 {#if depth === 1}
-    <h1 class="text-red-500 text-3xl font-mono">
-        <span class="text-slate-300"># </span>{text}
-    </h1>
-{:else}
-    <svelte:element this={`h${depth}`} class="font-mono">
-        <span class="text-slate-300">{genHashtag(depth)}</span>
+    <h1 class="text-red-500 text-3xl font-bold font-mono" {id}>
+        <a href="#{id}" class="!text-slate-500 !no-underline font-bold ">#</a>
         {text}
-    </svelte:element>
+    </h1>
+{:else if depth === 2}
+    <h2 class="text-2xl font-mono" {id}>
+        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">##</a>
+        {text}
+    </h2>
+{:else}
+    <h3 class="text-xl font-mono" {id}>
+        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">###</a>
+        {text}
+    </h3>
 {/if}
