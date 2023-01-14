@@ -13,18 +13,19 @@
                     <a
                         href="/"
                         class="block py-2 px-3 font-bold text-xl rounded-full bg-gradient-to-br from-yellow-600 to-red-600"
-                        >Home</a
                     >
+                        Home
+                    </a>
                 </li>
                 <li>
-                    <a href="/about" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500"
-                        >About</a
-                    >
+                    <a href="/about" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">
+                        About
+                    </a>
                 </li>
                 <li>
-                    <a href="/blog" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500"
-                        >Blog</a
-                    >
+                    <a href="/blog" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">
+                        Blog
+                    </a>
                 </li>
             </ul>
         </div>
