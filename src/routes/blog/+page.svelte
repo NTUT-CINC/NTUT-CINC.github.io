@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
+    import Summary from '$lib/Summary.svelte';
 
     export let data: PageData;
 </script>
@@ -11,7 +12,7 @@
 <ul>
     {#each data.summaries as { slug, title }}
         <li>
-            <a href="/blog/{slug}" class="text-blue-600 underline">{title}</a>
+            <Summary {slug} {title} />
         </li>
     {/each}
 </ul>
