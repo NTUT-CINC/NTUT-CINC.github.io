@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Home</title>
+</svelte:head>
+
 <div class="flex">
     <div class="w-6/12" />
     <div class="w-6/12">
