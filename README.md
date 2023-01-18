@@ -10,9 +10,3 @@
 npm install
 npm run dev
 ```
-
-### Deployment
-
-```bash
-npm run deploy
-```
