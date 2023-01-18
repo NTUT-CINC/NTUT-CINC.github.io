@@ -4,21 +4,23 @@
     export let data: LayoutData;
 </script>
 
-<div class="flex">
-    <div class="w-3/12" />
+<div class="flex flex-col items-center px-5">
+    <div class="w-full">
+        <a href="/blog" class="text-lg">Back</a>
+    </div>
+    <slot />
+</div>
 
-    <main class="w-6/12 flex flex-col items-center">
-        <slot />
-    </main>
-
-    <div class="w-3/12">
-        <h2>More Posts</h2>
+<!-- TODO: re-add this in the future -->
+<!--
+    <div class="w-2/12">
+        <h2 class="font-bold">More Posts</h2>
         <ul>
             {#each data.summaries as { slug, title }}
                 <li class="mb-2">
-                    <a href="/blog/{slug}" class="text-blue-600 underline">{title}</a>
+                    <a href="/blog/{slug}" class="text-cyan-600 underline">{title}</a>
                 </li>
             {/each}
         </ul>
     </div>
-</div>
+-->

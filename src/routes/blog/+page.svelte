@@ -5,14 +5,17 @@
     export let data: PageData;
 </script>
 
-<div class="container">
-    <h1 class="text-8xl font-bold font-mono">Blog</h1>
-</div>
+<svelte:head>
+    <title>Blog</title>
+</svelte:head>
 
-<ul>
-    {#each data.summaries as { slug, title }}
-        <li>
+<div class="flex flex-col items-center px-5">
+    <div class="prose prose-invert prose-cyan w-full">
+        <h1>Blog</h1>
+
+        {#each data.summaries as { slug, title }}
             <Summary {slug} {title} />
-        </li>
-    {/each}
-</ul>
+            <br />
+        {/each}
+    </div>
+</div>
