@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="../favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="dark light" />
+        <meta http-equiv="content-security-policy" content="">
+		<link href="../_app/immutable/assets/_layout-31a4f13a.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/_page-bd923f35.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/start-aaea3424.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/index-f7cf8892.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/singletons-15b9878c.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/_layout.svelte-6e6bd235.js">
+		<link rel="modulepreload" href="../_app/immutable/modules/pages/_layout.ts-9cbb603b.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/_layout-da46b06b.js">
+		<link rel="modulepreload" href="../_app/immutable/components/layout.svelte-314dc6d4.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/blog/_slug_/_layout.svelte-e4d14e29.js">
+		<link rel="modulepreload" href="../_app/immutable/components/pages/blog/_slug_/_page.svelte-f204bc83.js"><title>Contributing</title><!-- HEAD_svelte-1lc14l5_START --><!-- HEAD_svelte-1lc14l5_END -->
+    </head>
+    <!-- ! FORCE DARK MODE HACK HERE !-->
+    <body class="h-full bg-gray-900 dark">
+        <div style="display: contents">
+
+
+<div class="container mt-10 mx-auto h-full"><nav class="mb-6 p-0 sticky top-5"><div class="container flex m-auto justify-between"><div class="container"><a href="/">[insert logo]</a></div>
+            <ul class="flex flex-row p-1 bg-white rounded-full shadow-md"><li><a href="/" class="block py-2 px-3 font-bold text-xl rounded-full bg-gradient-to-br from-yellow-600 to-red-600">Home
+                    </a></li>
+                <li><a href="/about" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">About
+                    </a></li>
+                <li><a href="/blog" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">Blog
+                    </a></li></ul></div></nav>
+
+    <div class="flex flex-col items-center px-5"><div class="w-full"><a href="/blog" class="text-lg">Back</a></div>
+    
+
+<div class="prose prose-invert prose-cyan w-full"><div><span class="font-bold">Jan 18, 2023</span></div>
+    <h1 class="" id="contributing"><a href="#contributing" class="!text-slate-500 !no-underline font-bold ">#</a>
+        Contributing</h1><p>This project uses SvelteKit for static site generation and Tailwind CSS as the CSS framework</p><h2 id="setting-up-project"><a href="#setting-up-project" class="!text-slate-500 !no-underline font-bold">##</a>
+        Setting up Project</h2><p>After cloning the project do the following:</p><ul><li><code>npm install</code> to install dependencies
+            </li><li><code>npm run dev</code> to start a hot reload development server
+            </li></ul><h2 id="basic-guidelines"><a href="#basic-guidelines" class="!text-slate-500 !no-underline font-bold">##</a>
+        Basic Guidelines</h2><p>Those guidelines exists not as a technical limitation but as an effort to improve consistency and readability</p><h3 id="markdown"><a href="#markdown" class="!text-slate-500 !no-underline font-bold">###</a>
+        Markdown</h3><ul><li>Only one <code>h1</code> line
+            </li><li>Only up to three levels of headers
+            </li><li>Avoid nested lists
+            </li><li>ASCII-lowercase-letter filenames
+            </li></ul><h3 id="svelte/typescript"><a href="#svelte/typescript" class="!text-slate-500 !no-underline font-bold">###</a>
+        Svelte/TypeScript</h3><ul><li><code>camelCase</code> for variables and functions
+            </li><li><code>PascalCase</code> for components, types, and classes
+            </li><li>Use type annotations whenever the compiler can't figure out the type
+            </li><li>Choose meaningful variable names
+            </li></ul><h2 id="checking-tools"><a href="#checking-tools" class="!text-slate-500 !no-underline font-bold">##</a>
+        Checking Tools</h2><p>Please run those tools before submitting a pull request or else they won't pass the CI check</p><ul><li><code>npm run check</code> to run static analysis(<code>svelte-check</code>)
+            </li><li><code>npm run lint</code> to run formatter(<code>prettier</code>) and linter(<code>eslint</code>)
+            </li></ul><blockquote><p>If the formatting check fails use <code>npm run format</code> to fix formatting automatically</p></blockquote><h2 id="resources"><a href="#resources" class="!text-slate-500 !no-underline font-bold">##</a>
+        Resources</h2><h3 id="svelte/sveltekit"><a href="#svelte/sveltekit" class="!text-slate-500 !no-underline font-bold">###</a>
+        Svelte/SvelteKit</h3><ul><li><a href="https://svelte.dev/">https://svelte.dev/</a>
+            </li><li><a href="https://kit.svelte.dev/">https://kit.svelte.dev/</a>
+            </li></ul><h3 id="typescript"><a href="#typescript" class="!text-slate-500 !no-underline font-bold">###</a>
+        TypeScript</h3><ul><li><a href="https://www.typescriptlang.org/">https://www.typescriptlang.org/</a>
+            </li><li><a href="https://typescript-eslint.io/rules/naming-convention/#options">https://typescript-eslint.io/rules/naming-convention/#options</a>
+            </li></ul><h3 id="tailwind-css"><a href="#tailwind-css" class="!text-slate-500 !no-underline font-bold">###</a>
+        Tailwind CSS</h3><ul><li><a href="https://tailwindcss.com/">https://tailwindcss.com/</a>
+            </li></ul><h2 id="recommended-vs-code-extensions"><a href="#recommended-vs-code-extensions" class="!text-slate-500 !no-underline font-bold">##</a>
+        Recommended VS Code Extensions</h2><ul><li><a href="https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode">Svelte for VS Code</a>
+            </li><li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>
+            </li><li><a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">Tailwind CSS IntelliSense</a>
+            </li><li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier - Code formatter</a>
+            </li><li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a>
+            </li></ul></div></div>
+
+
+
+
+    <footer class="my-5"><div class="flex justify-center"><span>NTUT-CINC 2023 </span></div></footer></div>
+
+
+		<script type="module" data-sveltekit-hydrate="6m0nhp">
+			import { start } from "../_app/immutable/start-aaea3424.js";
+
+			start({
+				env: {},
+				paths: {"base":"","assets":""},
+				target: document.querySelector('[data-sveltekit-hydrate="6m0nhp"]').parentNode,
+				version: "1674065307189",
+				hydrate: {
+					node_ids: [0, 2, 3, 7],
+					data: [null,{type:"data",data:{summaries:[{slug:"cake",title:"This was a triumph"},{slug:"contrib",title:"Contributing"},{slug:"safety",title:"Safety notice"},{slug:"test",title:"Svelte Prototype"},{slug:"welcome",title:"Welcome to the Aperture Science computer-aided enrichment center"}]},uses:{}},null,{type:"data",data:{title:"Contributing",content:"# Contributing\n\nThis project uses SvelteKit for static site generation and Tailwind CSS as the CSS framework\n\n## Setting up Project\n\nAfter cloning the project do the following:\n\n-   `npm install` to install dependencies\n-   `npm run dev` to start a hot reload development server\n\n## Basic Guidelines\n\nThose guidelines exists not as a technical limitation but as an effort to improve consistency and readability\n\n### Markdown\n\n-   Only one `h1` line\n-   Only up to three levels of headers\n-   Avoid nested lists\n-   ASCII-lowercase-letter filenames\n\n### Svelte\u002FTypeScript\n\n-   `camelCase` for variables and functions\n-   `PascalCase` for components, types, and classes\n-   Use type annotations whenever the compiler can't figure out the type\n-   Choose meaningful variable names\n\n## Checking Tools\n\nPlease run those tools before submitting a pull request or else they won't pass the CI check\n\n-   `npm run check` to run static analysis(`svelte-check`)\n-   `npm run lint` to run formatter(`prettier`) and linter(`eslint`)\n\n\u003E If the formatting check fails use `npm run format` to fix formatting automatically\n\n## Resources\n\n### Svelte\u002FSvelteKit\n\n-   https:\u002F\u002Fsvelte.dev\u002F\n-   https:\u002F\u002Fkit.svelte.dev\u002F\n\n### TypeScript\n\n-   https:\u002F\u002Fwww.typescriptlang.org\u002F\n-   https:\u002F\u002Ftypescript-eslint.io\u002Frules\u002Fnaming-convention\u002F#options\n\n### Tailwind CSS\n\n-   https:\u002F\u002Ftailwindcss.com\u002F\n\n## Recommended VS Code Extensions\n\n-   [Svelte for VS Code](https:\u002F\u002Fmarketplace.visualstudio.com\u002Fitems?itemName=svelte.svelte-vscode)\n-   [ESLint](https:\u002F\u002Fmarketplace.visualstudio.com\u002Fitems?itemName=dbaeumer.vscode-eslint)\n-   [Tailwind CSS IntelliSense](https:\u002F\u002Fmarketplace.visualstudio.com\u002Fitems?itemName=bradlc.vscode-tailwindcss)\n-   [Prettier - Code formatter](https:\u002F\u002Fmarketplace.visualstudio.com\u002Fitems?itemName=esbenp.prettier-vscode)\n-   [Markdown All in One](https:\u002F\u002Fmarketplace.visualstudio.com\u002Fitems?itemName=yzhang.markdown-all-in-one)\n",createdOn:new Date(1674065299060),updatedOn:new Date(1674065299060)},uses:{params:["slug"]}}],
+					form: null
+				}
+			});
+		</script>
+	</div>
+    </body>
+</html>
