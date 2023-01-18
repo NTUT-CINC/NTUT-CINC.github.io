@@ -3,7 +3,7 @@
 </script>
 
 <div class="container mt-10 mx-auto h-full">
-    <nav class="mb-6 p-0 sticky top-5 ">
+    <nav class="mb-6 p-0 sticky top-5">
         <div class="container flex m-auto justify-between">
             <div class="container">
                 <a href="/">[insert logo]</a>
