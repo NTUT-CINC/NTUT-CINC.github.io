@@ -1,8 +1,8 @@
 import type { LayoutServerLoad } from './$types';
 
-import { getPosts } from './posts';
+import { getPosts } from '$lib/server/posts';
 
-export const load = (() => {
+export const load: LayoutServerLoad = async () => {
     return {
         summaries: getPosts().map((post) => {
             return {
@@ -11,4 +11,4 @@ export const load = (() => {
             };
         })
     };
-}) satisfies LayoutServerLoad;
+};
