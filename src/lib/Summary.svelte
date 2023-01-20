@@ -3,4 +3,4 @@
     export let title: string;
 </script>
 
-<a href="/blog/{slug}" class="text-blue-600 underline">{title}</a>
+<a href="/blog/{slug}" class="text-cyan-600 underline">{title}</a>
