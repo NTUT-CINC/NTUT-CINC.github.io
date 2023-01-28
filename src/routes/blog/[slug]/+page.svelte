@@ -1,15 +1,10 @@
 <script lang="ts">
     import type { PageData } from './$types';
 
-    import SvelteMarkdown, { type Renderers } from 'svelte-markdown';
+    import SvelteMarkdown from 'svelte-markdown';
+    import renderers from '$lib/markdown';
 
-    import Heading from '$lib/markdown/Heading.svelte';
-    import CodeBlock from '$lib/markdown/CodeBlock.svelte';
-
-    const renderers: Partial<Renderers> = {
-        heading: Heading,
-        code: CodeBlock
-    };
+    export let data: PageData;
 
     const toDateFormatString = (date: Date) => {
         return date.toLocaleDateString('en-us', {
@@ -18,8 +13,6 @@
             year: 'numeric'
         });
     };
-
-    export let data: PageData;
 </script>
 
 <svelte:head>
@@ -30,5 +23,6 @@
     <div>
         <span class="font-bold">{toDateFormatString(data.createdOn)}</span>
     </div>
+
     <SvelteMarkdown source={data.content} {renderers} />
 </div>
