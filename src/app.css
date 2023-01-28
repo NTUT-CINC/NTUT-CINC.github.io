@@ -1,8 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* ! FORCE WHITE TEXT HACK ! */
-html {
-    @apply text-gray-50;
-}
