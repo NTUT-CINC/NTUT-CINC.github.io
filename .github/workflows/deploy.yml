@@ -26,6 +26,9 @@ jobs:
       - name: Install NPM Packages
         run: |
           npm install
+
+      - name: Start SSG
+          git log --format=%cd --diff-filter=A -- src/posts/test.md
           npm run build
           touch ./build/.nojekyll
 
