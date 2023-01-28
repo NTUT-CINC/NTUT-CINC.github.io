@@ -6,6 +6,8 @@ For help type `tldr <command>`
 
 `pacman -Syu`
 
+[risky click of the day](https://youtu.be/hcaPRXx3EzA)
+
 ```cpp
 #include <iostream>
 
@@ -46,3 +48,7 @@ Test
 | /    | matrix |
 | ---- | ------ |
 | test | 1      |
+
+> There are no accidents
+
+-- Master Oogway
