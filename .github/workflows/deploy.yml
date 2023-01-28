@@ -31,7 +31,6 @@ jobs:
 
       - name: Start SSG
         run: |
-          git log --format=%cd --diff-filter=A -- src/posts/test.md
           npm run build
           touch ./build/.nojekyll
 
