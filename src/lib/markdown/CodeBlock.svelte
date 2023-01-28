@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { error } from '@sveltejs/kit';
     import { marked } from 'marked';
     import hljs from 'highlight.js/lib/common'; // this should cover most languages
 
@@ -20,16 +19,36 @@
         showCopyButton = 'hidden';
     };
 
+    const handleFallbackCopy = async () => {
+        let textArea = document.createElement('textarea');
+        textArea.value = text;
+
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.position = 'fixed';
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            return;
+        }
+
+        document.body.removeChild(textArea);
+    };
+
+    // TODO: Implement animations
     const handleCopy = async () => {
         try {
-            if (!navigator.clipboard) {
-                // TODO: Implement fallback using `document.execCommand('copy')`
-                console.warn('Cannot Copy to Clipboard');
-                throw error(500);
+            if (navigator.clipboard) {
+                // the `navigator.clipboard` API is only allowed over HTTPS connection
+                await navigator.clipboard.writeText(text);
+            } else {
+                await handleFallbackCopy();
             }
-
-            // writing to clipboard is only allowed over HTTPS connection
-            await navigator.clipboard.writeText(text);
 
             copyStatus = 'success';
         } catch (err) {
@@ -43,13 +62,9 @@
         copyStatus = 'default';
     };
 
-    marked.setOptions({
-        highlight: (code, lang) => {
-            return hljs.highlight(code, { language: lang }).value;
-        }
+    const html = marked.parse(raw, {
+        highlight: (code, lang) => hljs.highlight(code, { language: lang }).value
     });
-
-    const html = marked.parse(raw);
 </script>
 
 <div class="not-prose mb-3">
@@ -69,8 +84,19 @@
             on:mouseout={handleLeaveButton}
             on:keyup={handleCopy}
             on:blur={handleLeaveButton}
-            class="{showCopyButton} absolute top-0 right-0"
+            class="{showCopyButton} flex absolute top-0 right-0"
         >
+            <div class="flex items-center py-1">
+                {#if copyStatus === 'success'}
+                    <div class="px-2 py-1 bg-slate-900 rounded-md border border-slate-700">
+                        <span>Copied to clipboard!</span>
+                    </div>
+                {:else if copyStatus === 'fail'}
+                    <div class="px-2 py-1 bg-slate-900 rounded-md border-2 border-slate-700">
+                        <span>Oops! Something went wrong...</span>
+                    </div>
+                {/if}
+            </div>
             {#if copyStatus === 'default'}
                 <button class="p-2 text-slate-600 hover:text-slate-200">
                     <svg
