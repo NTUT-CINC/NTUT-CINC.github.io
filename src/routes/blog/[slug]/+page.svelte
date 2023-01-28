@@ -26,7 +26,7 @@
     <title>{data.title}</title>
 </svelte:head>
 
-<div class="prose prose-invert prose-cyan w-full">
+<div class="prose prose-lg prose-invert w-full">
     <div>
         <span class="font-bold">{toDateFormatString(data.createdOn)}</span>
     </div>
