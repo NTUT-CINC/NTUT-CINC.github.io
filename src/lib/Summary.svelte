@@ -6,7 +6,7 @@
 
 <a
     href="/blog/{slug}"
-    class="inline-block w-full mb-4 p-4 rounded-md bg-slate-800 hover:bg-slate-700 transition-all"
+    class="mb-4 inline-block w-full rounded-md bg-slate-800 p-4 transition-all hover:bg-slate-700"
 >
     <p>{createdOn.toLocaleDateString()}</p>
     <h1 class="text-3xl font-bold">{title}</h1>

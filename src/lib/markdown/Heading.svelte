@@ -7,17 +7,17 @@
 
 {#if depth === 1}
     <h1 class="" {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold ">#</a>
+        <a href="#{id}" class="font-bold !text-slate-500 !no-underline ">#</a>
         {text}
     </h1>
 {:else if depth === 2}
     <h2 {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">##</a>
+        <a href="#{id}" class="font-bold !text-slate-500 !no-underline">##</a>
         {text}
     </h2>
 {:else}
     <h3 {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">###</a>
+        <a href="#{id}" class="font-bold !text-slate-500 !no-underline">###</a>
         {text}
     </h3>
 {/if}

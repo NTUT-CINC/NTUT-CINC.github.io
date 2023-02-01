@@ -11,7 +11,7 @@
         <div class="flex items-center">
             <a
                 href="https://discord.gg/Sh5Rhj8ghn"
-                class="w-6 mx-2 text-slate-400 hover:text-slate-100"
+                class="mx-2 w-6 text-slate-400 hover:text-slate-100"
             >
                 <FAIcon icon={faDiscord} class="" />
             </a>

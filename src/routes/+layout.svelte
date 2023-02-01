@@ -5,7 +5,7 @@
     import Footer from '$lib/Footer.svelte';
 </script>
 
-<div class="container mt-10 mx-auto h-full">
+<div class="container mx-auto mt-10 h-full">
     <Navbar />
 
     <slot />

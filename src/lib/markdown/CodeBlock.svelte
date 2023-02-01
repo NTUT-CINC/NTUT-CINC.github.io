@@ -70,7 +70,7 @@
 </script>
 
 <div class="not-prose mb-3">
-    <div class="px-2 pt-1 rounded-t-lg bg-slate-700 text-right select-none">
+    <div class="select-none rounded-t-lg bg-slate-700 px-2 pt-1 text-right">
         <p class="font-mono text-xs">{lang}</p>
     </div>
 
@@ -79,22 +79,22 @@
         on:mouseout={handleHideButton}
         on:focus={handleShowButton}
         on:blur={handleHideButton}
-        class="relative p-3 text-sm rounded-b-lg bg-slate-800"
+        class="relative rounded-b-lg bg-slate-800 p-3 text-sm"
     >
         <div
             on:click={handleCopy}
             on:mouseout={handleLeaveButton}
             on:keyup={handleCopy}
             on:blur={handleLeaveButton}
-            class="{showCopyButton} flex absolute top-0 right-0"
+            class="{showCopyButton} absolute top-0 right-0 flex"
         >
             <div class="flex items-center py-1">
                 {#if copyStatus === 'success'}
-                    <div class="px-2 py-1 bg-slate-900 rounded-md border border-slate-700">
+                    <div class="rounded-md border border-slate-700 bg-slate-900 px-2 py-1">
                         <span>Copied to clipboard!</span>
                     </div>
                 {:else if copyStatus === 'fail'}
-                    <div class="px-2 py-1 bg-slate-900 rounded-md border-2 border-slate-700">
+                    <div class="rounded-md border-2 border-slate-700 bg-slate-900 px-2 py-1">
                         <span>Oops! Something went wrong...</span>
                     </div>
                 {/if}
