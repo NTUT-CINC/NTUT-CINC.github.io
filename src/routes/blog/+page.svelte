@@ -13,9 +13,10 @@
     <div class="prose prose-invert prose-cyan w-full">
         <h1>Blog</h1>
 
-        {#each data.summaries as { slug, title }}
-            <Summary {slug} {title} />
-            <br />
-        {/each}
+        <div class="not-prose">
+            {#each data.summaries as props}
+                <Summary {...props} />
+            {/each}
+        </div>
     </div>
 </div>
