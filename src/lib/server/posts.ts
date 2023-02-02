@@ -40,18 +40,15 @@ const getPost = (filename: string) => {
     const categories = content.attributes.categories ? content.attributes.categories : [];
     const [createdOn, updatedOn] = getTime(filename);
 
-    const metadata = {
-        title: title,
-        preview: content.attributes.preview,
-        categories: categories,
-        createdOn: createdOn,
-        updatedOn: updatedOn
-    };
-
     return {
         slug: slug,
         content: body,
-        metadata: metadata
+        metadata: {
+            title: title,
+            categories: categories,
+            createdOn: createdOn,
+            updatedOn: updatedOn
+        }
     };
 };
 

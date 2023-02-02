@@ -8,7 +8,6 @@ export const load: LayoutServerLoad = async () => {
             return {
                 slug: post.slug,
                 title: post.metadata.title,
-                preview: post.metadata.preview,
                 categories: post.metadata.categories,
                 createdOn: post.metadata.createdOn
             };
