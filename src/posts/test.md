@@ -1,3 +1,8 @@
+---
+preview: test preview
+categories: [english, testing]
+---
+
 # Svelte Prototype
 
 ## subtitle

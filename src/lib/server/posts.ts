@@ -1,6 +1,13 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 
+import frontmatter from 'front-matter';
+
+interface MarkdownFrontmatter {
+    preview?: string;
+    categories?: string[];
+}
+
 const getTime = (filename: string): [Date, Date] => {
     /**
      * I don't think git commits preserve file metadata
@@ -25,16 +32,26 @@ const getTime = (filename: string): [Date, Date] => {
 
 const getPost = (filename: string) => {
     const slug = filename.slice(0, -3); // trim off `.md` file extension
-    const content = fs.readFileSync(`src/posts/${filename}`).toString();
-    const title = content.slice(2, content.indexOf('\n'));
+    const raw = fs.readFileSync(`src/posts/${filename}`).toString();
+    const content = frontmatter<MarkdownFrontmatter>(raw);
+
+    const body = content.body;
+    const title = body.slice(2, body.indexOf('\n'));
+    const categories = content.attributes.categories ? content.attributes.categories : [];
     const [createdOn, updatedOn] = getTime(filename);
+
+    const metadata = {
+        title: title,
+        preview: content.attributes.preview,
+        categories: categories,
+        createdOn: createdOn,
+        updatedOn: updatedOn
+    };
 
     return {
         slug: slug,
-        title: title,
-        content: content,
-        createdOn: createdOn,
-        updatedOn: updatedOn
+        content: body,
+        metadata: metadata
     };
 };
 
@@ -49,4 +66,4 @@ export const getPosts = () =>
     fs
         .readdirSync('src/posts')
         .map(getPost)
-        .sort((a, b) => b.createdOn.getTime() - a.createdOn.getTime());
+        .sort((a, b) => b.metadata.createdOn.getTime() - a.metadata.createdOn.getTime());

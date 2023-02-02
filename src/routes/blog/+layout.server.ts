@@ -7,8 +7,10 @@ export const load: LayoutServerLoad = async () => {
         summaries: getPosts().map((post) => {
             return {
                 slug: post.slug,
-                title: post.title,
-                createdOn: post.createdOn
+                title: post.metadata.title,
+                preview: post.metadata.preview,
+                categories: post.metadata.categories,
+                createdOn: post.metadata.createdOn
             };
         })
     };

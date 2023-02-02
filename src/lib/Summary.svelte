@@ -1,6 +1,8 @@
 <script lang="ts">
     export let slug: string;
     export let title: string;
+    export let preview: string | undefined;
+    export let categories: string[];
     export let createdOn: Date;
 </script>
 
@@ -10,5 +12,16 @@
 >
     <p>{createdOn.toLocaleDateString()}</p>
     <h1 class="text-3xl font-bold">{title}</h1>
-    <p class="text-slate-400">Some preview text here</p>
+    <div class="my-2">
+        {#each categories as category}
+            <span class="mr-2 rounded-full bg-slate-600 py-1 px-2">{category}</span>
+        {/each}
+    </div>
+    <p class="text-slate-400">
+        {#if preview}
+            {preview}
+        {:else}
+            Some preview text
+        {/if}
+    </p>
 </a>

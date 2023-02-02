@@ -20,8 +20,13 @@
 </svelte:head>
 
 <div class="prose prose-lg prose-invert w-full">
-    <div>
-        <span class="font-bold">{toDateFormatString(data.createdOn)}</span>
+    <div class="not-prose">
+        <p class="font-bold">{toDateFormatString(data.createdOn)}</p>
+        <div class="my-2">
+            {#each data.categories as category}
+                <span class="mr-2 rounded-full bg-slate-600 py-1 px-2">{category}</span>
+            {/each}
+        </div>
     </div>
 
     <SvelteMarkdown source={data.content} {renderers} />
