@@ -48,7 +48,8 @@ const getPost = (filename: string) => {
             categories: categories,
             createdOn: createdOn,
             updatedOn: updatedOn
-        }
+        },
+        searchTerms: `${title} ${categories.join(' ')}`.toLowerCase()
     };
 };
 

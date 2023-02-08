@@ -9,7 +9,8 @@ export const load: LayoutServerLoad = async () => {
                 slug: post.slug,
                 title: post.metadata.title,
                 categories: post.metadata.categories,
-                createdOn: post.metadata.createdOn
+                createdOn: post.metadata.createdOn,
+                searchTerms: post.searchTerms
             };
         })
     };
