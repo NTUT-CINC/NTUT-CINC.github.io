@@ -3,6 +3,7 @@
 
     import SvelteMarkdown from 'svelte-markdown';
     import renderers from '$lib/markdown';
+    import CategoryList from '$lib/CategoryList.svelte';
 
     export let data: PageData;
 
@@ -19,15 +20,15 @@
     <title>{data.title}</title>
 </svelte:head>
 
-<div class="prose prose-lg prose-invert w-full">
-    <div class="not-prose">
-        <p class="font-bold">{toDateFormatString(data.createdOn)}</p>
+<div class="mx-auto mb-5 max-w-prose lg:text-lg">
+    <p class="font-bold">{toDateFormatString(data.createdOn)}</p>
+    {#if data.categories.length > 0}
         <div class="my-2">
-            {#each data.categories as category}
-                <span class="mr-2 rounded-full bg-slate-600 py-1 px-2">{category}</span>
-            {/each}
+            <CategoryList categories={data.categories} />
         </div>
-    </div>
-
-    <SvelteMarkdown source={data.content} {renderers} />
+    {/if}
 </div>
+
+<article class="prose prose-invert mx-auto w-full lg:prose-lg">
+    <SvelteMarkdown source={data.content} {renderers} />
+</article>
