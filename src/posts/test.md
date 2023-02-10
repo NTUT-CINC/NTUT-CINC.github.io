@@ -47,6 +47,10 @@ def func(n: int) -> None:
     print(n)
 ```
 
+```
+curl -s -X POST -H 'Content-Type: application/json' -d '{"name":"123","rule_type":"En"}' $addr/threads | jq
+```
+
 Test
 
 | /    | matrix |

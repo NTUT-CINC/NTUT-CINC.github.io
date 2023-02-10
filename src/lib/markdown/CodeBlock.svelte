@@ -10,16 +10,13 @@
     export let lang: string;
     export let raw: string;
 
-    let showCopyButton: 'hidden' | 'block' = 'hidden';
-    let copyStatus: 'default' | 'success' | 'fail' = 'default';
+    enum CopyStatus {
+        default,
+        success,
+        fail
+    }
 
-    const handleShowButton = async () => {
-        showCopyButton = 'block';
-    };
-
-    const handleHideButton = async () => {
-        showCopyButton = 'hidden';
-    };
+    let copyStatus = CopyStatus.default;
 
     const handleFallbackCopy = async () => {
         let textArea = document.createElement('textarea');
@@ -52,68 +49,69 @@
                 await handleFallbackCopy();
             }
 
-            copyStatus = 'success';
+            copyStatus = CopyStatus.success;
         } catch (err) {
-            copyStatus = 'fail';
+            copyStatus = CopyStatus.fail;
 
             console.error(err);
         }
     };
 
     const handleLeaveButton = async () => {
-        copyStatus = 'default';
+        copyStatus = CopyStatus.default;
     };
 
     const html = marked.parse(raw, {
-        highlight: (code, lang) => hljs.highlight(code, { language: lang }).value
+        highlight: (code, lang) => (lang ? hljs.highlight(code, { language: lang }).value : code)
     });
 </script>
 
-<div class="not-prose mb-3">
-    <div class="select-none rounded-t-lg bg-slate-700 px-2 pt-1 text-right">
-        <p class="font-mono text-xs">{lang}</p>
-    </div>
+<div class="not-prose inset-0 mb-3 overflow-hidden rounded-lg">
+    {#if lang}
+        <div class="flex select-none justify-end bg-slate-700 text-right">
+            <span class="my-0.5 mx-2 font-mono text-xs">{lang}</span>
+        </div>
+    {/if}
 
-    <div
-        on:mouseover={handleShowButton}
-        on:mouseout={handleHideButton}
-        on:focus={handleShowButton}
-        on:blur={handleHideButton}
-        class="relative rounded-b-lg bg-slate-800 p-3 text-sm"
-    >
-        <div
-            on:click={handleCopy}
-            on:mouseout={handleLeaveButton}
-            on:keyup={handleCopy}
-            on:blur={handleLeaveButton}
-            class="{showCopyButton} absolute top-0 right-0 flex"
-        >
-            <div class="flex items-center py-1">
-                {#if copyStatus === 'success'}
-                    <div class="rounded-md border border-slate-700 bg-slate-900 px-2 py-1">
-                        <span>Copied to clipboard!</span>
-                    </div>
-                {:else if copyStatus === 'fail'}
-                    <div class="rounded-md border-2 border-slate-700 bg-slate-900 px-2 py-1">
-                        <span>Oops! Something went wrong...</span>
-                    </div>
-                {/if}
-            </div>
-            {#if copyStatus === 'default'}
-                <button class="p-3 text-slate-600 hover:text-slate-200">
+    <div class="group relative rounded-b-lg bg-slate-800 px-3 text-sm">
+        <div class="absolute top-0 right-0 hidden items-center group-hover:flex">
+            {#if copyStatus === CopyStatus.default}
+                <button
+                    on:click={handleCopy}
+                    on:keyup={handleCopy}
+                    class="m-3 p-0 text-slate-600 hover:text-slate-200"
+                >
                     <FAIcon icon={faClone} class="text-xl" />
                 </button>
-            {:else if copyStatus === 'success'}
-                <button class="p-3 text-emerald-400">
+            {:else if copyStatus === CopyStatus.success}
+                <div class="h-min rounded-md border border-slate-700 bg-slate-900 px-2 py-1">
+                    <span>Copied to clipboard!</span>
+                </div>
+
+                <button
+                    on:mouseout={handleLeaveButton}
+                    on:blur={handleLeaveButton}
+                    class="m-3 p-0 text-emerald-400"
+                >
                     <FAIcon icon={faCircleCheck} class="text-xl" />
                 </button>
             {:else}
-                <button class="p-3 text-red-500">
+                <div class="h-min rounded-md border-2 border-slate-700 bg-slate-900 px-2 py-1">
+                    <span>Oops! Something went wrong...</span>
+                </div>
+
+                <button
+                    on:mouseout={handleLeaveButton}
+                    on:blur={handleLeaveButton}
+                    class="m-3 p-0 text-red-500"
+                >
                     <FAIcon icon={faCircleXmark} class="text-xl" />
                 </button>
             {/if}
         </div>
 
-        {@html html}
+        <div class="overflow-x-auto overflow-y-hidden py-3">
+            {@html html}
+        </div>
     </div>
 </div>
