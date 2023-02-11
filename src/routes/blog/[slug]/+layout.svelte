@@ -4,13 +4,11 @@
     // export let data: LayoutData;
 </script>
 
-<div class="px-5">
-    <div class="w-full">
-        <a href="/blog" class="text-lg">Back</a>
-    </div>
-
-    <slot />
+<div class="w-full">
+    <a href="/blog" class="text-lg">Back</a>
 </div>
+
+<slot />
 
 <!-- TODO: re-add this in the future -->
 <!--
