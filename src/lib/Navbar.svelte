@@ -1,6 +1,8 @@
 <script lang="ts">
     import { page } from '$app/stores';
 
+    import ClubLogo from '$lib/assets/club_logo.png';
+
     const sameRoute = (curr: string, cmp: string) => {
         if (curr === cmp) return true;
 
@@ -18,8 +20,11 @@
 
 <header class="mb-6 w-full p-0 backdrop-blur">
     <div class="container m-auto flex justify-between">
-        <div class="flex items-center justify-center">
-            <a href="/" class="p-3">[insert logo]</a>
+        <div class="h-20">
+            <a href="/" class="flex h-full items-center">
+                <img src={ClubLogo} alt="ntut-cinc-logo" class="mr-4 h-8" />
+                <span class="font-heading text-3xl font-bold text-white">NTUT CINC</span>
+            </a>
         </div>
 
         <div>

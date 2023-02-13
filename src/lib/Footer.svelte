@@ -6,6 +6,8 @@
         faInstagram,
         faFacebookF
     } from '@fortawesome/free-brands-svg-icons';
+
+    import NTUTLogo from '$lib/assets/ntut_logo.png';
 </script>
 
 <footer class="relative mx-auto mt-10 w-3/4 max-sm:w-full max-sm:px-5 lg:w-3/5">
@@ -14,12 +16,7 @@
     <div
         class="my-20 flex flex-row items-center justify-between max-sm:flex-col max-sm:justify-center"
     >
-        <!-- TODO: Replace stolen placeholder image -->
-        <img
-            src="https://course-map-fcf13.web.app/static/media/logo.e5f6774504b50d32233d.png"
-            alt="ntut-logo"
-            class="mx-2 h-24"
-        />
+        <img src={NTUTLogo} alt="ntut-logo" class="mx-2 h-24" />
 
         <div class="flex space-x-4">
             <a
