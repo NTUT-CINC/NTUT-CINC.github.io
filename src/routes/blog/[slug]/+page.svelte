@@ -21,7 +21,10 @@
 </svelte:head>
 
 <div class="mx-auto mb-5 max-w-prose lg:text-lg">
-    <p class="font-bold">{toDateFormatString(data.createdOn)}</p>
+    <p class="font-bold">
+        {toDateFormatString(data.createdOn)}
+    </p>
+
     {#if data.categories.length > 0}
         <div class="my-2">
             <CategoryList categories={data.categories} />
@@ -29,6 +32,6 @@
     {/if}
 </div>
 
-<article class="prose prose-invert mx-auto w-full lg:prose-lg">
+<article class="prose prose-invert mx-auto w-full prose-a:text-emerald-400 lg:prose-lg">
     <SvelteMarkdown source={data.content} {renderers} />
 </article>

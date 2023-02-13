@@ -1,7 +1,7 @@
 <script lang="ts">
     import { marked } from 'marked';
     import hljs from 'highlight.js/lib/common'; // this should cover most languages
-    import 'highlight.js/styles/github-dark.css';
+    import 'highlight.js/styles/obsidian.css';
 
     import FAIcon from 'svelte-fa';
     import { faClone, faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
@@ -50,6 +50,8 @@
             }
 
             copyStatus = CopyStatus.success;
+
+            setTimeout(() => (copyStatus = CopyStatus.default), 1000);
         } catch (err) {
             copyStatus = CopyStatus.fail;
 
@@ -68,23 +70,29 @@
 
 <div class="not-prose inset-0 mb-3 overflow-hidden rounded-lg">
     {#if lang}
-        <div class="flex select-none justify-end bg-slate-700 text-right">
+        <div
+            class="flex select-none justify-end
+            bg-neutral-700 text-right text-neutral-300"
+        >
             <span class="my-0.5 mx-2 font-mono text-xs">{lang}</span>
         </div>
     {/if}
 
-    <div class="group relative rounded-b-lg bg-slate-800 px-3 text-sm">
+    <div class="group relative rounded-b-lg bg-neutral-800 px-3 text-sm">
         <div class="absolute top-0 right-0 hidden items-center group-hover:flex">
             {#if copyStatus === CopyStatus.default}
                 <button
                     on:click={handleCopy}
                     on:keyup={handleCopy}
-                    class="m-3 p-0 text-slate-600 hover:text-slate-200"
+                    class="m-3 p-0 text-neutral-600 hover:text-neutral-200"
                 >
                     <FAIcon icon={faClone} class="text-xl" />
                 </button>
             {:else if copyStatus === CopyStatus.success}
-                <div class="h-min rounded-md border border-slate-700 bg-slate-900 px-2 py-1">
+                <div
+                    class="h-min rounded-md border
+                    border-neutral-700 bg-neutral-900 px-2 py-1"
+                >
                     <span>Copied to clipboard!</span>
                 </div>
 
@@ -96,7 +104,10 @@
                     <FAIcon icon={faCircleCheck} class="text-xl" />
                 </button>
             {:else}
-                <div class="h-min rounded-md border-2 border-slate-700 bg-slate-900 px-2 py-1">
+                <div
+                    class="h-min rounded-md border-2
+                    border-neutral-700 bg-neutral-900 px-2 py-1"
+                >
                     <span>Oops! Something went wrong...</span>
                 </div>
 
@@ -110,7 +121,7 @@
             {/if}
         </div>
 
-        <div class="overflow-x-auto overflow-y-hidden py-3">
+        <div class="overflow-auto py-3">
             {@html html}
         </div>
     </div>

@@ -5,6 +5,11 @@
     import Footer from '$lib/Footer.svelte';
 </script>
 
+<div
+    class="fixed top-0 h-screen w-screen
+    bg-gradient-to-b from-black to-neutral-900"
+/>
+
 <div class="flex h-full flex-col">
     <Navbar />
 

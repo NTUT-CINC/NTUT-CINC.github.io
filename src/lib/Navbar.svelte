@@ -23,21 +23,23 @@
         </div>
 
         <div>
-            <ul class="flex items-center">
+            <ul class="flex items-center space-x-2">
                 {#each routes as { path, name }}
-                    <li class="group relative mx-1 w-24 text-center">
+                    <li class="group relative w-24 text-center">
                         {#if $page.route.id && sameRoute($page.route.id, path)}
                             <div class="absolute h-1 w-full bg-emerald-400" />
                         {/if}
 
                         <div
-                            class="absolute h-full w-full -translate-y-20 rounded-b-md bg-emerald-400 transition-all group-hover:translate-y-0"
+                            class="absolute h-full w-full -translate-y-full
+                            rounded-b-md bg-emerald-400
+                            transition-all group-hover:translate-y-0"
                         />
 
                         <a
                             href={path}
-                            class="relative block pb-3 pt-5 font-heading text-2xl font-bold
-                            transition-all group-hover:text-slate-900"
+                            class="relative block pb-3 pt-5 font-heading text-2xl
+                            font-bold transition-all group-hover:text-black"
                         >
                             {name}
                         </a>

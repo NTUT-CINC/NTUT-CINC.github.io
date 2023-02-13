@@ -2,7 +2,7 @@
     <title>About</title>
 </svelte:head>
 
-<div class="prose prose-invert mx-auto w-full lg:text-lg">
+<div class="prose prose-invert mx-auto w-full prose-a:text-emerald-400 lg:prose-lg">
     <h1 class="font-heading">About</h1>
 
     <p>
