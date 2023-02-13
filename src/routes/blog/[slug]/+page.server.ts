@@ -9,9 +9,10 @@ export const load: PageServerLoad = async ({ params }) => {
     if (!post) throw error(404);
 
     return {
-        title: post.title,
+        title: post.metadata.title,
         content: post.content,
-        createdOn: post.createdOn,
-        updatedOn: post.updatedOn
+        categories: post.metadata.categories,
+        createdOn: post.metadata.createdOn,
+        updatedOn: post.metadata.updatedOn
     };
 };

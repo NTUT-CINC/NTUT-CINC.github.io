@@ -1,23 +1,22 @@
 <script lang="ts">
     import { marked } from 'marked';
     import hljs from 'highlight.js/lib/common'; // this should cover most languages
+    import 'highlight.js/styles/obsidian.css';
 
-    import 'highlight.js/styles/github-dark.css';
+    import FAIcon from 'svelte-fa';
+    import { faClone, faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
     export let text: string;
     export let lang: string;
     export let raw: string;
 
-    let showCopyButton: 'hidden' | 'block' = 'hidden';
-    let copyStatus: 'default' | 'success' | 'fail' = 'default';
+    enum CopyStatus {
+        default,
+        success,
+        fail
+    }
 
-    const handleShowButton = async () => {
-        showCopyButton = 'block';
-    };
-
-    const handleHideButton = async () => {
-        showCopyButton = 'hidden';
-    };
+    let copyStatus = CopyStatus.default;
 
     const handleFallbackCopy = async () => {
         let textArea = document.createElement('textarea');
@@ -50,107 +49,80 @@
                 await handleFallbackCopy();
             }
 
-            copyStatus = 'success';
+            copyStatus = CopyStatus.success;
+
+            setTimeout(() => (copyStatus = CopyStatus.default), 1000);
         } catch (err) {
-            copyStatus = 'fail';
+            copyStatus = CopyStatus.fail;
 
             console.error(err);
         }
     };
 
     const handleLeaveButton = async () => {
-        copyStatus = 'default';
+        copyStatus = CopyStatus.default;
     };
 
     const html = marked.parse(raw, {
-        highlight: (code, lang) => hljs.highlight(code, { language: lang }).value
+        highlight: (code, lang) => (lang ? hljs.highlight(code, { language: lang }).value : code)
     });
 </script>
 
-<div class="not-prose mb-3">
-    <div class="px-2 pt-1 rounded-t-lg bg-slate-700 text-right select-none">
-        <p class="font-mono text-xs">{lang}</p>
-    </div>
-
-    <div
-        on:mouseover={handleShowButton}
-        on:mouseout={handleHideButton}
-        on:focus={handleShowButton}
-        on:blur={handleHideButton}
-        class="relative p-3 text-sm rounded-b-lg bg-slate-800"
-    >
+<div class="not-prose inset-0 mb-3 overflow-hidden rounded-lg">
+    {#if lang}
         <div
-            on:click={handleCopy}
-            on:mouseout={handleLeaveButton}
-            on:keyup={handleCopy}
-            on:blur={handleLeaveButton}
-            class="{showCopyButton} flex absolute top-0 right-0"
+            class="flex select-none justify-end
+            bg-neutral-700 text-right text-neutral-300"
         >
-            <div class="flex items-center py-1">
-                {#if copyStatus === 'success'}
-                    <div class="px-2 py-1 bg-slate-900 rounded-md border border-slate-700">
-                        <span>Copied to clipboard!</span>
-                    </div>
-                {:else if copyStatus === 'fail'}
-                    <div class="px-2 py-1 bg-slate-900 rounded-md border-2 border-slate-700">
-                        <span>Oops! Something went wrong...</span>
-                    </div>
-                {/if}
-            </div>
-            {#if copyStatus === 'default'}
-                <button class="p-2 text-slate-600 hover:text-slate-200">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M16.5 8.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h2.25m8.25-8.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-7.5A2.25 2.25 0 018.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 00-2.25 2.25v6"
-                        />
-                    </svg>
+            <span class="my-0.5 mx-2 font-mono text-xs">{lang}</span>
+        </div>
+    {/if}
+
+    <div class="group relative rounded-b-lg bg-neutral-800 px-3 text-sm">
+        <div class="absolute top-0 right-0 hidden items-center group-hover:flex">
+            {#if copyStatus === CopyStatus.default}
+                <button
+                    on:click={handleCopy}
+                    on:keyup={handleCopy}
+                    class="m-3 p-0 text-neutral-600 hover:text-neutral-200"
+                >
+                    <FAIcon icon={faClone} class="text-xl" />
                 </button>
-            {:else if copyStatus === 'success'}
-                <button class="p-2 text-emerald-400">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
+            {:else if copyStatus === CopyStatus.success}
+                <div
+                    class="h-min rounded-md border
+                    border-neutral-700 bg-neutral-900 px-2 py-1"
+                >
+                    <span>Copied to clipboard!</span>
+                </div>
+
+                <button
+                    on:mouseout={handleLeaveButton}
+                    on:blur={handleLeaveButton}
+                    class="m-3 p-0 text-emerald-400"
+                >
+                    <FAIcon icon={faCircleCheck} class="text-xl" />
                 </button>
             {:else}
-                <button class="p-2 text-red-500">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
+                <div
+                    class="h-min rounded-md border-2
+                    border-neutral-700 bg-neutral-900 px-2 py-1"
+                >
+                    <span>Oops! Something went wrong...</span>
+                </div>
+
+                <button
+                    on:mouseout={handleLeaveButton}
+                    on:blur={handleLeaveButton}
+                    class="m-3 p-0 text-red-500"
+                >
+                    <FAIcon icon={faCircleXmark} class="text-xl" />
                 </button>
             {/if}
         </div>
 
-        {@html html}
+        <div class="overflow-auto py-3">
+            {@html html}
+        </div>
     </div>
 </div>

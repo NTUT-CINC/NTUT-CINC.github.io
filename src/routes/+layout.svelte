@@ -1,41 +1,21 @@
 <script lang="ts">
     import '../app.css';
+
+    import Navbar from '$lib/Navbar.svelte';
+    import Footer from '$lib/Footer.svelte';
 </script>
 
-<div class="container mt-10 mx-auto h-full">
-    <nav class="mb-6 p-0 sticky top-5">
-        <div class="container flex m-auto justify-between">
-            <div class="container">
-                <a href="/">[insert logo]</a>
-            </div>
-            <ul class="flex flex-row p-1 bg-white rounded-full shadow-md">
-                <li>
-                    <a
-                        href="/"
-                        class="block py-2 px-3 font-bold text-xl rounded-full bg-gradient-to-br from-yellow-600 to-red-600"
-                    >
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="/about" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">
-                        About
-                    </a>
-                </li>
-                <li>
-                    <a href="/blog" class="block mx-1 py-2 px-3 font-bold text-xl text-orange-500">
-                        Blog
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<div
+    class="fixed top-0 h-screen w-screen
+    bg-gradient-to-b from-black to-neutral-900"
+/>
 
-    <slot />
+<div class="flex h-full flex-col">
+    <Navbar />
 
-    <footer class="my-5">
-        <div class="flex justify-center">
-            <span> NTUT-CINC 2023 </span>
-        </div>
-    </footer>
+    <div class="relative mx-auto w-full flex-grow px-5">
+        <slot />
+    </div>
+
+    <Footer />
 </div>

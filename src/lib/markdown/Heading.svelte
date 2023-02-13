@@ -5,19 +5,14 @@
     const id = text.toLowerCase().replaceAll(' ', '-');
 </script>
 
-{#if depth === 1}
-    <h1 class="" {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold ">#</a>
-        {text}
-    </h1>
-{:else if depth === 2}
-    <h2 {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">##</a>
-        {text}
-    </h2>
-{:else}
-    <h3 {id}>
-        <a href="#{id}" class="!text-slate-500 !no-underline font-bold">###</a>
-        {text}
-    </h3>
-{/if}
+<svelte:element this={`h${depth}`} {id} class="group relative -ml-4 pl-4 font-heading">
+    <a
+        href="#{id}"
+        class="absolute -ml-2 -translate-x-full
+        font-sans font-bold !text-neutral-500 no-underline
+        opacity-0 transition-all group-hover:opacity-100"
+    >
+        #
+    </a>
+    <span class="underline decoration-emerald-400 decoration-4 underline-offset-[6px]">{text}</span>
+</svelte:element>
