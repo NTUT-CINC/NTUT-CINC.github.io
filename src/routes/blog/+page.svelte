@@ -10,19 +10,29 @@
 
     export let data: PageData;
 
-    const handleSubmit = async () => {
-        if (data.searchTerm !== '') {
-            $page.url.searchParams.set('searchTerm', data.searchTerm);
-        } else {
-            $page.url.searchParams.delete('searchTerm');
-        }
+    /**
+     * Because SvelteKit SSG can't deal with
+     * `$page.url.searchParams`, we need to parse it ourselves
+     */
+    const getSearchParams = () => {
+        // for more information please go to https://stackoverflow.com/a/10126995
+        const res = $page.url.href.match(/searchTerm=([^&]*)/);
 
-        goto($page.url.toString(), { replaceState: false });
+        return res ? res[1].replace('+', ' ') : '';
     };
+
+    const handleSubmit = async () => {
+        const url =
+            '/blog' + (searchTerm !== '' ? `?searchTerm=${searchTerm.replace(' ', '+')}` : '');
+
+        goto(url, { replaceState: true });
+    };
+
+    let searchTerm = getSearchParams();
 
     $: filteredSummaries = data.summaries.filter((summary) => {
         // TODO: Implement regex or fuzzy search
-        return summary.searchTerms.includes(data.searchTerm.toLowerCase());
+        return summary.searchTerms.includes(searchTerm.toLowerCase());
     });
 </script>
 
@@ -48,7 +58,7 @@
             <input
                 type="search"
                 id="search-box"
-                bind:value={data.searchTerm}
+                bind:value={searchTerm}
                 class="block w-full rounded-lg border-2 border-neutral-700
                 bg-black py-2 pl-12 outline-none transition-all
                 placeholder:font-heading placeholder:text-neutral-500

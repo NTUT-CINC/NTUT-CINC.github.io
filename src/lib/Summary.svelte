@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { page } from '$app/stores';
     import CategoryList from './CategoryList.svelte';
 
     export let slug: string;
@@ -17,7 +16,7 @@
     </div>
 
     <div class="w-full">
-        <a href="{$page.url.href}/{slug}" class="block w-full">
+        <a href="/blog/{slug}" class="block w-full">
             <p class="font-mono text-neutral-300">
                 {createdOn.toLocaleDateString()}
             </p>
