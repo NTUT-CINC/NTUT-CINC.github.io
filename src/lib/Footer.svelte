@@ -16,7 +16,7 @@
     <div
         class="my-20 flex flex-row items-center justify-between max-sm:flex-col max-sm:justify-center"
     >
-        <img src={NTUTLogo} alt="ntut-logo" class="mx-2 h-24" />
+        <img src={NTUTLogo} alt="ntut-logo" class="mx-2 h-24 max-sm:mb-10" />
 
         <div class="flex space-x-4">
             <a
