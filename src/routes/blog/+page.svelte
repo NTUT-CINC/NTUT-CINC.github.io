@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { PageData } from './$types';
-    import { page } from '$app/stores';
     import { goto } from '$app/navigation';
 
     import FAIcon from 'svelte-fa';
@@ -10,29 +9,17 @@
 
     export let data: PageData;
 
-    /**
-     * Because SvelteKit SSG can't deal with
-     * `$page.url.searchParams`, we need to parse it ourselves
-     */
-    const getSearchParams = () => {
-        // for more information please go to https://stackoverflow.com/a/10126995
-        const res = $page.url.href.match(/searchTerm=([^&]*)/);
-
-        return res ? res[1].replace('+', ' ') : '';
-    };
-
     const handleSubmit = async () => {
         const url =
-            '/blog' + (searchTerm !== '' ? `?searchTerm=${searchTerm.replace(' ', '+')}` : '');
+            '/blog' +
+            (data.searchTerm !== '' ? `?searchTerm=${data.searchTerm.replace(' ', '+')}` : '');
 
         goto(url, { replaceState: true });
     };
 
-    let searchTerm = getSearchParams();
-
     $: filteredSummaries = data.summaries.filter((summary) => {
         // TODO: Implement regex or fuzzy search
-        return summary.searchTerms.includes(searchTerm.toLowerCase());
+        return summary.searchTerms.includes(data.searchTerm.toLowerCase());
     });
 </script>
 
@@ -58,7 +45,7 @@
             <input
                 type="search"
                 id="search-box"
-                bind:value={searchTerm}
+                bind:value={data.searchTerm}
                 class="block w-full rounded-lg border-2 border-neutral-700
                 bg-black py-2 pl-12 outline-none transition-all
                 placeholder:font-heading placeholder:text-neutral-500

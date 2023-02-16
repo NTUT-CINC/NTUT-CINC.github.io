@@ -10,9 +10,6 @@
 
         url.searchParams.set('searchTerm', category);
 
-        console.log($page.url);
-        console.log(url);
-
         goto(url.toString(), { replaceState: false });
     };
 </script>
@@ -21,7 +18,8 @@
     {#each categories as category}
         <button
             on:click={() => handleClick(category)}
-            class="mr-2 rounded-full bg-emerald-400 px-2 font-mono text-sm font-bold text-black transition-all hover:bg-neutral-800 hover:text-white"
+            class="mr-2 rounded-full bg-emerald-400 px-2 font-mono text-sm
+            font-bold text-black transition-all hover:bg-neutral-800 hover:text-white"
         >
             {category}
         </button>
