@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
+    import { goto } from '$app/navigation';
 
     import FAIcon from 'svelte-fa';
     import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -8,11 +9,17 @@
 
     export let data: PageData;
 
-    let searchInput = '';
+    const handleSubmit = async () => {
+        const url =
+            '/blog' +
+            (data.searchTerm !== '' ? `?searchTerm=${data.searchTerm.replace(' ', '+')}` : '');
+
+        goto(url, { replaceState: true });
+    };
 
     $: filteredSummaries = data.summaries.filter((summary) => {
         // TODO: Implement regex or fuzzy search
-        return summary.searchTerms.includes(searchInput.toLowerCase());
+        return summary.searchTerms.includes(data.searchTerm.toLowerCase());
     });
 </script>
 
@@ -25,7 +32,7 @@
         <h1 class="font-heading">Blog</h1>
     </div>
 
-    <div class="mb-5">
+    <form on:submit|preventDefault={handleSubmit} class="mb-5">
         <label for="search-box" class="sr-only">Search Box</label>
         <div class="relative">
             <div
@@ -38,7 +45,7 @@
             <input
                 type="search"
                 id="search-box"
-                bind:value={searchInput}
+                bind:value={data.searchTerm}
                 class="block w-full rounded-lg border-2 border-neutral-700
                 bg-black py-2 pl-12 outline-none transition-all
                 placeholder:font-heading placeholder:text-neutral-500
@@ -46,7 +53,7 @@
                 placeholder="Search"
             />
         </div>
-    </div>
+    </form>
 
     {#if filteredSummaries.length > 0}
         <div class="flex flex-col space-y-5 px-2">

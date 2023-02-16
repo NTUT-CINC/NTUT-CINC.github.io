@@ -37,7 +37,7 @@ const getPost = (filename: string) => {
 
     const body = content.body;
     const title = body.slice(2, body.indexOf('\n'));
-    const categories = content.attributes.categories ? content.attributes.categories : [];
+    const categories = content.attributes.categories || [];
     const [createdOn, updatedOn] = getTime(filename);
 
     return {
