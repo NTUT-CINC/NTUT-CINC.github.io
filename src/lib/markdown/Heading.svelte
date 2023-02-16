@@ -10,7 +10,7 @@
         href="#{id}"
         class="absolute -ml-2 -translate-x-full
         font-sans font-bold !text-neutral-500 no-underline
-        opacity-0 transition-all group-hover:opacity-100"
+        opacity-0 transition-all group-hover:opacity-100 max-sm:hidden"
     >
         #
     </a>
