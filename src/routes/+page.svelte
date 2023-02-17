@@ -1,3 +1,11 @@
+<script lang="ts">
+    let show = true;
+
+    const handleClick = () => {
+        show = false;
+    };
+</script>
+
 <svelte:head>
     <title>Home</title>
 </svelte:head>
@@ -14,7 +22,7 @@
                         via-emerald-400 to-teal-300 bg-clip-text
                         text-2xl font-bold text-transparent md:text-3xl"
                     >
-                        CINC is not Cybercriminal.
+                        CINC is not <span class="bg-emerald-400 text-black">Cybercriminal</span>.
                     </p>
                 </div>
             </div>
@@ -31,5 +39,18 @@
                 </div>
             </div>
         </div>
+
+        {#if show}
+            <div class="fixed inset-x-0 top-52 mx-auto max-w-prose">
+                <button
+                    on:click={handleClick}
+                    class="mx-auto block bg-black p-5 text-left text-lg text-red-500"
+                >
+                    Note: This page is only a placeholder and NOT designed, ignore everything you
+                    see here. Go to blog to see more complete features and design. If you really
+                    want to view this page, click me to hide.
+                </button>
+            </div>
+        {/if}
     </section>
 </div>
