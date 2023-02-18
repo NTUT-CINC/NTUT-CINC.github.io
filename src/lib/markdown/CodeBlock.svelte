@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { marked } from 'marked';
     import hljs from 'highlight.js/lib/common'; // this should cover most languages
     import 'highlight.js/styles/obsidian.css';
 
@@ -8,7 +7,39 @@
 
     export let text: string;
     export let lang: string;
-    export let raw: string;
+
+    const highlight = (code: string, lang: string) => {
+        let showLineNumber = false;
+        let lineCount = -1;
+
+        if (lang.slice(-1) === '=') {
+            showLineNumber = true;
+            lineCount = (code.match(/\n$/g) || []).length;
+            lang = lang.slice(0, -1);
+        }
+
+        const parsedLang = hljs.getLanguage(lang)?.name || '';
+
+        if (parsedLang) {
+            const hlCode = hljs.highlight(code, { language: parsedLang }).value;
+
+            return {
+                code: `<pre><code>${hlCode}</code></pre>`,
+                parsedLang,
+                showLineNumber,
+                lineCount
+            };
+        }
+
+        return {
+            code: `<pre><code>${code}</code></pre>`,
+            parsedLang,
+            showLineNumber,
+            lineCount
+        };
+    };
+
+    const res = highlight(text, lang);
 
     enum CopyStatus {
         default,
@@ -62,19 +93,15 @@
     const handleLeaveButton = async () => {
         copyStatus = CopyStatus.default;
     };
-
-    const html = marked.parse(raw, {
-        highlight: (code, lang) => (lang ? hljs.highlight(code, { language: lang }).value : code)
-    });
 </script>
 
 <div class="not-prose inset-0 mb-3 overflow-hidden rounded-lg">
-    {#if lang}
+    {#if res.parsedLang.length > 0}
         <div
             class="flex select-none justify-end
             bg-neutral-700 text-right text-neutral-300"
         >
-            <span class="my-0.5 mx-2 font-mono text-xs">{lang}</span>
+            <span class="mx-2 mt-0.5 font-mono text-xs">{res.parsedLang}</span>
         </div>
     {/if}
 
@@ -122,7 +149,7 @@
         </div>
 
         <div class="overflow-auto py-3">
-            {@html html}
+            {@html res.code}
         </div>
     </div>
 </div>
