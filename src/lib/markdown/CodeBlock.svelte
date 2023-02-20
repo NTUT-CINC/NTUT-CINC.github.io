@@ -1,12 +1,22 @@
 <script lang="ts">
-    import hljs from 'highlight.js/lib/common'; // this should cover most languages
+    /**
+     * `highlight.js/lib/common` includes common languages like
+     * Python, JS, C/C++, Golang...etc.
+     *
+     * For additional language support, see
+     * https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
+     */
+    import hljs from 'highlight.js/lib/common';
     import 'highlight.js/styles/obsidian.css';
+    import x86asm from 'highlight.js/lib/languages/x86asm';
 
     import FAIcon from 'svelte-fa';
     import { faClone, faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
     export let text: string;
     export let lang: string;
+
+    hljs.registerLanguage('x86asm', x86asm);
 
     const highlight = (code: string, lang: string) => {
         const showLineNumber = lang.slice(-1) === '=';
@@ -16,10 +26,10 @@
             lang = lang.slice(0, -1);
         }
 
-        const parsedLang = (hljs.getLanguage(lang)?.name || '').toLowerCase();
+        const parsedLang = hljs.getLanguage(lang)?.name || '';
 
         if (parsedLang) {
-            const hlCode = hljs.highlight(code, { language: parsedLang });
+            const hlCode = hljs.highlight(code, { language: lang });
 
             return {
                 code: `<pre><code>${hlCode.value}</code></pre>`,
