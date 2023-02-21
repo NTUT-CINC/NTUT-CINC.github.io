@@ -5,7 +5,7 @@
     const id = text.toLowerCase().replaceAll(' ', '-');
 </script>
 
-<svelte:element this={`h${depth}`} {id} class="group relative -ml-4 pl-4 font-heading">
+<svelte:element this={`h${depth}`} {id} class="group relative -ml-4 scroll-mt-28 pl-4 font-heading">
     <a
         href="#{id}"
         class="absolute -ml-2 -translate-x-full
