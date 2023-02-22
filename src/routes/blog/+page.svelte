@@ -12,7 +12,9 @@
     const handleSubmit = async () => {
         const url =
             '/blog' +
-            (data.searchTerm !== '' ? `?searchTerm=${data.searchTerm.replace(' ', '+')}` : '');
+            (data.searchTerm !== ''
+                ? `?searchTerm=${data.searchTerm.replace(' ', '+')}`
+                : '');
 
         goto(url, { replaceState: true });
     };

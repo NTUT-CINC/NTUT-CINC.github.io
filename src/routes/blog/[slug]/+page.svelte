@@ -9,7 +9,9 @@
     export let data: PageData;
 
     const tokens = marked.lexer(data.content);
-    const headings = tokens.filter((token) => token.type === 'heading') as marked.Tokens.Heading[];
+    const headings = tokens.filter(
+        (token) => token.type === 'heading'
+    ) as marked.Tokens.Heading[];
 
     const toDateFormatString = (date: Date) => {
         return date.toLocaleDateString('en-us', {

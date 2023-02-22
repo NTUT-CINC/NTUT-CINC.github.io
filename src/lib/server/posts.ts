@@ -15,7 +15,9 @@ const getTime = (filename: string): [Date, Date] => {
      */
     const createdOn = new Date(
         Number.parseInt(
-            execSync(`git log --format=%ct --diff-filter=A -- src/posts/${filename}`)
+            execSync(
+                `git log --format=%ct --diff-filter=A -- src/posts/${filename}`
+            )
                 .toString()
                 .trim()
         ) * 1000
@@ -23,7 +25,9 @@ const getTime = (filename: string): [Date, Date] => {
 
     const updatedOn = new Date(
         Number.parseInt(
-            execSync(`git log --format=%ct -1 -- src/posts/${filename}`).toString().trim()
+            execSync(`git log --format=%ct -1 -- src/posts/${filename}`)
+                .toString()
+                .trim()
         ) * 1000
     );
 
@@ -64,4 +68,7 @@ export const getPosts = () =>
     fs
         .readdirSync('src/posts')
         .map(getPost)
-        .sort((a, b) => b.metadata.createdOn.getTime() - a.metadata.createdOn.getTime());
+        .sort(
+            (a, b) =>
+                b.metadata.createdOn.getTime() - a.metadata.createdOn.getTime()
+        );

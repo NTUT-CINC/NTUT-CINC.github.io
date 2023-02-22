@@ -11,7 +11,11 @@
     import x86asm from 'highlight.js/lib/languages/x86asm';
 
     import FAIcon from 'svelte-fa';
-    import { faClone, faCircleCheck, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+    import {
+        faClone,
+        faCircleCheck,
+        faCircleXmark
+    } from '@fortawesome/free-regular-svg-icons';
 
     export let text: string;
     export let lang: string;
@@ -114,7 +118,9 @@
     {/if}
 
     <div class="group relative bg-neutral-800 px-3 text-sm">
-        <div class="absolute top-0 right-0 hidden items-center group-hover:flex">
+        <div
+            class="absolute top-0 right-0 hidden items-center group-hover:flex"
+        >
             {#if copyStatus === CopyStatus.default}
                 <button
                     on:click={handleCopy}
@@ -158,7 +164,10 @@
 
         <div class="flex">
             {#if res.showLineNumber}
-                <div class="mr-4 select-none py-3 text-right font-mono text-neutral-500">
+                <div
+                    class="mr-4 select-none py-3 text-right
+                    font-mono text-neutral-500"
+                >
                     <pre class="w-6">{Array.from(Array(res.lineCount).keys())
                             .map((n) => n + 1)
                             .join('\n')}</pre>
