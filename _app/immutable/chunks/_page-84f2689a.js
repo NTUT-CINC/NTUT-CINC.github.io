@@ -1,0 +1,1 @@
+const t=async({url:r})=>{const e=r.href.match(/searchTerm=([^&]*)/);return{searchTerm:e?e[1].replace("+"," "):""}},c=Object.freeze(Object.defineProperty({__proto__:null,load:t},Symbol.toStringTag,{value:"Module"}));export{c as _,t as l};
