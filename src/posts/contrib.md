@@ -1,3 +1,7 @@
+---
+categories: [english]
+---
+
 # Contributing
 
 This project uses SvelteKit for static site generation and Tailwind CSS as the CSS framework

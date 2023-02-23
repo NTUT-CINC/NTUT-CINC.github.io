@@ -15,17 +15,21 @@
         />
     </div>
 
-    <a href="/blog/{slug}" class="block w-full">
-        <p class="font-mono text-neutral-300">{createdOn.toLocaleDateString()}</p>
+    <div class="w-full">
+        <a href="/blog/{slug}" class="block w-full">
+            <p class="font-mono text-neutral-300">
+                {createdOn.toLocaleDateString()}
+            </p>
 
-        <h1 class="font-heading text-2xl font-bold">
-            {title}
-        </h1>
+            <h1 class="font-heading text-2xl font-bold">
+                {title}
+            </h1>
+        </a>
 
         {#if categories.length > 0}
             <div class="my-2">
                 <CategoryList {categories} />
             </div>
         {/if}
-    </a>
+    </div>
 </div>

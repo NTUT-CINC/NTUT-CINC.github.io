@@ -13,7 +13,7 @@
 <div class="flex h-full flex-col">
     <Navbar />
 
-    <div class="relative mx-auto w-full flex-grow px-5">
+    <div class="relative mx-auto mt-20 w-full flex-grow px-5">
         <slot />
     </div>
 

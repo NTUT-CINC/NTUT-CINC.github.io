@@ -1,3 +1,7 @@
+---
+categories: [chinese]
+---
+
 # 中文測試
 
 ### 上集解答
